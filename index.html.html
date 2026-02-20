@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Türkiye'de 9.500 çalışanla yapılan İş'te Anlam Araştırması 2026 — Kopuş eşiğinde bir çalışma deneyimi">
+<title>İş'te Anlam 2026 · Bunu Okuman Lazım</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0f0f0f;
+  --paper: #faf8f4;
+  --cream: #f2ede4;
+  --amber: #c8832a;
+  --amber-light: #f5c06a;
+  --amber-pale: #fdf3e0;
+  --red: #b83232;
+  --green: #2a7a4b;
+  --muted: #7a7060;
+  --border: rgba(15,15,15,0.1);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── READING PROGRESS ─── */
+#rp {
+  position: fixed; top:0; left:0; right:0; height:3px; z-index:999;
+  background: var(--cream);
+}
+#rp-bar {
+  height:100%; width:0%;
+  background: linear-gradient(90deg, var(--amber), var(--amber-light));
+  transition: width 0.08s linear;
+}
+
+/* ─── STICKY NAV ─── */
+.topbar {
+  position: sticky; top:0; z-index:100;
+  background: rgba(250,248,244,0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  padding: 0.9rem 1.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.topbar-brand {
+  font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--muted); font-weight: 500;
+}
+.topbar-share {
+  background: var(--ink); color: var(--paper);
+  border: none; cursor: pointer;
+  font-family: 'Epilogue', sans-serif;
+  font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.45rem 1rem;
+  display: flex; align-items: center; gap: 0.4rem;
+  transition: background 0.2s;
+}
+.topbar-share:hover { background: var(--amber); }
+.topbar-share svg { width:14px; height:14px; }
+
+/* ─── HERO ─── */
+.hero {
+  padding: 4rem 1.5rem 3rem;
+  max-width: 680px; margin: 0 auto;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.hero-kicker {
+  display: inline-block;
+  font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--amber); font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 8vw, 4.2rem);
+  font-weight: 900;
+  line-height: 1.08;
+  margin-bottom: 1.2rem;
+  letter-spacing: -0.02em;
+}
+.hero-title em { font-style: italic; color: var(--amber); }
+.hero-deck {
+  font-size: 1.05rem; color: var(--muted);
+  max-width: 520px; margin: 0 auto 2.5rem;
+  line-height: 1.75;
+}
+.hero-meta {
+  display: flex; align-items: center; justify-content: center;
+  gap: 1.5rem; flex-wrap: wrap;
+  font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted);
+}
+.hero-meta span { display: flex; align-items: center; gap: 0.4rem; }
+.hero-meta span::before { content:'·'; }
+.hero-meta span:first-child::before { content:''; }
+
+/* ─── SCORE HERO BLOCK ─── */
+.score-block {
+  margin: 2.5rem 1.5rem;
+  max-width: 680px; margin-left: auto; margin-right: auto;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 2.5rem 2rem;
+  display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: center;
+  position: relative; overflow: hidden;
+}
+.score-block::before {
+  content: '';
+  position: absolute; right: -30px; top: -30px;
+  width: 160px; height: 160px; border-radius: 50%;
+  background: rgba(200,131,42,0.12);
+}
+.score-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 5.5rem; font-weight: 900;
+  color: var(--amber-light);
+  line-height: 1;
+}
+.score-denom { font-size: 2.5rem; opacity: 0.35; }
+.score-right {}
+.score-label {
+  font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(255,255,255,0.4); margin-bottom: 0.6rem;
+}
+.score-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem; font-weight: 700;
+  color: var(--paper); margin-bottom: 0.8rem;
+  line-height: 1.3;
+}
+.score-bar-track {
+  height: 3px; background: rgba(255,255,255,0.1); margin-bottom: 0.8rem;
+}
+.score-bar-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--amber), var(--amber-light));
+  transition: width 1.4s cubic-bezier(0.22,1,0.36,1);
+}
+.score-caption { font-size: 0.8rem; color: rgba(255,255,255,0.45); line-height: 1.6; }
+
+/* ─── CONTAINER ─── */
+.container { max-width: 680px; margin: 0 auto; padding: 0 1.5rem; }
+
+/* ─── SECTION HEADER ─── */
+.sec-header {
+  padding: 3rem 0 1.5rem;
+  border-top: 2px solid var(--ink);
+}
+.sec-num {
+  font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 0.5rem;
+}
+.sec-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.7rem, 5vw, 2.6rem);
+  font-weight: 900; line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+.sec-title em { font-style: italic; color: var(--amber); }
+.sec-lead {
+  font-size: 0.95rem; color: var(--muted);
+  margin-top: 0.8rem; line-height: 1.75;
+}
+
+/* ─── PULL QUOTE ─── */
+.pullquote {
+  margin: 2rem 0;
+  padding: 1.5rem 0 1.5rem 1.5rem;
+  border-left: 3px solid var(--amber);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem; font-style: italic;
+  line-height: 1.5; color: var(--ink);
+}
+
+/* ─── STAT PILL ROW ─── */
+.stat-row {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--border);
+  margin: 2rem 0;
+}
+.stat-cell {
+  background: var(--paper);
+  padding: 1.2rem 1rem;
+  text-align: center;
+}
+.stat-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem; font-weight: 900; color: var(--amber);
+  display: block; line-height: 1;
+}
+.stat-lbl { font-size: 0.72rem; color: var(--muted); margin-top: 0.4rem; line-height: 1.4; }
+
+/* ─── BODY TEXT ─── */
+.body-text {
+  font-size: 0.97rem; line-height: 1.82;
+  color: #2a2520;
+  margin-bottom: 1.2rem;
+}
+.body-text strong { font-weight: 600; color: var(--ink); }
+
+/* ─── ALERT BOX ─── */
+.alert {
+  background: var(--amber-pale);
+  border-left: 3px solid var(--amber);
+  padding: 1rem 1.2rem;
+  margin: 1.5rem 0;
+  font-size: 0.88rem; line-height: 1.65;
+  color: #5a3a0a;
+}
+.alert-red {
+  background: #fdf0f0;
+  border-left-color: var(--red);
+  color: #5a1010;
+}
+.alert-green {
+  background: #f0faf4;
+  border-left-color: var(--green);
+  color: #0f3a20;
+}
+.alert strong { font-weight: 600; }
+
+/* ─── 5 BREAKS ─── */
+.break-card {
+  border: 1px solid var(--border);
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+.break-card-head {
+  display: grid; grid-template-columns: 56px 1fr auto;
+  align-items: center; gap: 1rem;
+  padding: 1.1rem 1.2rem;
+  background: var(--cream);
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s;
+}
+.break-card-head:hover { background: #ede8de; }
+.break-card-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem; font-weight: 900;
+  color: rgba(15,15,15,0.15);
+  line-height: 1;
+}
+.break-card-title { font-size: 0.95rem; font-weight: 600; }
+.break-card-metric {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem; font-weight: 700;
+  color: var(--amber); white-space: nowrap;
+}
+.break-card-body {
+  display: none; padding: 1.2rem 1.2rem 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.break-card-body.open { display: block; }
+.break-body-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+@media(min-width:520px) { .break-body-grid { grid-template-columns: 1fr 1fr; } }
+.break-body-col {}
+.break-col-head {
+  font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 0.6rem; font-weight: 600;
+}
+.break-col-text {
+  font-size: 0.85rem; line-height: 1.72; color: #3a3328;
+}
+.risk-chip {
+  display: inline-block; margin-top: 0.8rem;
+  background: #fdf0f0; color: var(--red);
+  font-size: 0.75rem; padding: 0.35rem 0.8rem;
+  font-weight: 500;
+}
+
+/* ─── DATA CARDS ─── */
+.data-card {
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+.data-card::before {
+  content: '';
+  position: absolute; top:0; left:0; bottom:0; width:3px;
+  background: var(--amber);
+}
+.data-big {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem; font-weight: 900; color: var(--amber);
+  line-height: 1; margin-bottom: 0.5rem;
+}
+.data-title { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.6rem; }
+.data-body { font-size: 0.83rem; color: var(--muted); line-height: 1.7; }
+
+/* ─── COMPARE BARS ─── */
+.compare-wrap { margin-top: 1.2rem; }
+.compare-row {
+  display: grid; grid-template-columns: 100px 1fr 36px;
+  align-items: center; gap: 0.7rem; margin-bottom: 0.6rem;
+}
+.compare-lbl { font-size: 0.75rem; color: var(--muted); }
+.compare-track { height: 5px; background: var(--cream); border-radius: 2px; overflow: hidden; }
+.compare-fill {
+  height: 100%; width: 0%; background: var(--amber);
+  border-radius: 2px;
+  transition: width 1.2s cubic-bezier(0.22,1,0.36,1);
+}
+.compare-pct { font-size: 0.75rem; font-weight: 600; color: var(--amber); text-align: right; }
+
+/* ─── BEHAVIOR LIST ─── */
+.behavior-list { margin: 1.5rem 0; }
+.b-item {
+  display: grid; grid-template-columns: 32px 1fr;
+  gap: 1rem; padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.b-item:last-child { border-bottom: none; }
+.b-n {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 700; color: rgba(15,15,15,0.15);
+  line-height: 1.2;
+}
+.b-strong { font-size: 0.9rem; font-weight: 600; display: block; margin-bottom: 0.3rem; }
+.b-text { font-size: 0.83rem; color: var(--muted); line-height: 1.65; }
+
+/* ─── MESSAGES ─── */
+.msg-block {
+  padding: 2rem;
+  margin-bottom: 1rem;
+}
+.msg-block-dark { background: var(--ink); color: var(--paper); }
+.msg-block-light { background: var(--cream); }
+.msg-label {
+  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  margin-bottom: 1rem; font-weight: 600;
+}
+.msg-block-dark .msg-label { color: rgba(255,255,255,0.4); }
+.msg-block-light .msg-label { color: var(--amber); }
+.msg-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem; font-weight: 700; line-height: 1.2;
+  margin-bottom: 1.2rem;
+}
+.msg-list { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+.msg-list li {
+  font-size: 0.87rem; line-height: 1.7;
+  padding-left: 1.2rem; position: relative;
+}
+.msg-list li::before {
+  content: '→'; position: absolute; left: 0;
+  color: var(--amber); font-weight: 600;
+}
+.msg-block-dark .msg-list li { color: rgba(255,255,255,0.65); }
+.msg-block-light .msg-list li { color: #3a3328; }
+
+/* ─── FINALE ─── */
+.finale {
+  margin: 2rem 0 4rem;
+  padding: 3rem 1.5rem;
+  background: var(--ink);
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.finale::before {
+  content: '52';
+  position: absolute;
+  font-family: 'Playfair Display', serif;
+  font-size: 20rem; font-weight: 900;
+  color: rgba(255,255,255,0.02);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap; pointer-events: none;
+}
+.finale-kicker {
+  font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--amber); margin-bottom: 1.5rem;
+}
+.finale-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 5vw, 2.4rem); font-weight: 900;
+  color: var(--paper); line-height: 1.25;
+  margin-bottom: 1.5rem;
+}
+.finale-title em { font-style: italic; color: var(--amber-light); }
+.finale-rule { width: 40px; height: 2px; background: var(--amber); margin: 0 auto 1.5rem; }
+.finale-quote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic; font-size: 1.05rem; line-height: 1.65;
+  color: rgba(255,255,255,0.7); max-width: 520px; margin: 0 auto;
+}
+.finale-source {
+  margin-top: 2rem;
+  font-size: 0.68rem; letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.2);
+}
+
+/* ─── DIVIDER ─── */
+.divider {
+  border: none; border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+/* ─── TOAST ─── */
+#toast {
+  position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(80px);
+  background: var(--ink); color: var(--paper);
+  padding: 0.75rem 1.5rem; font-size: 0.82rem;
+  z-index: 9999; transition: transform 0.3s ease;
+  pointer-events: none;
+}
+#toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ─── ANIMATIONS ─── */
+.reveal { opacity:0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.on { opacity:1; transform: translateY(0); }
+
+/* ─── MOBILE TWEAKS ─── */
+@media(max-width: 480px) {
+  .score-block { grid-template-columns: 1fr; text-align: center; }
+  .score-num { font-size: 4rem; }
+  .stat-row { grid-template-columns: 1fr 1fr; }
+  .stat-row .stat-cell:last-child { grid-column: span 2; }
+}
+</style>
+</head>
+<body>
+
+<div id="rp"><div id="rp-bar"></div></div>
+
+<!-- NAV -->
+<div class="topbar">
+  <div class="topbar-brand">İş'te Anlam · 2026</div>
+  <button class="topbar-share" onclick="shareOrCopy()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+      <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+    </svg>
+    Paylaş
+  </button>
+</div>
+
+<!-- HERO -->
+<div class="hero reveal">
+  <span class="hero-kicker">HRdergiLAB Araştırması · 2026</span>
+  <h1 class="hero-title">Çalışanlar Kopmuyor,<br><em>Geri Çekiliyor</em></h1>
+  <p class="hero-deck">
+    Türkiye'de 9.500 çalışanla yapılan araştırma, uzun süredir hissedilen ama tanımlanamayan bir kırılmayı sayılara döktü. Skoru gördüğünde anlayacaksın neden.
+  </p>
+  <div class="hero-meta">
+    <span>9.500 Çalışan</span>
+    <span>Nicel Araştırma</span>
+    <span>2025–2026</span>
+    <span>hrdergi.com</span>
+  </div>
+</div>
+
+<!-- SCORE -->
+<div class="score-block reveal">
+  <div class="score-num">52<span class="score-denom">/100</span></div>
+  <div class="score-right">
+    <div class="score-label">Türkiye İş'te Anlam Skoru</div>
+    <div class="score-headline">Ne güçlü bağlılık,<br>ne açık kopuş.</div>
+    <div class="score-bar-track"><div class="score-bar-fill" id="sbar"></div></div>
+    <div class="score-caption">Sessiz kopuşun normalize olduğu bir eşik alanı. Çalışanlar sistemin içinde kalıyor — ama anlamı aramakla yetiniyor.</div>
+  </div>
+</div>
+
+<!-- BÖLÜM 1: SORUN -->
+<div class="container">
+  <div class="sec-header reveal">
+    <div class="sec-num">Bölüm 01 — Sorun Ne?</div>
+    <h2 class="sec-title">Bu Rapor Hangi<br><em>Problemi</em> Görünür Kılıyor?</h2>
+    <p class="sec-lead">Motivasyon sorunu değil. Yönetim sorunu.</p>
+  </div>
+
+  <div class="stat-row reveal">
+    <div class="stat-cell">
+      <span class="stat-val">%86</span>
+      <div class="stat-lbl">anlamlı etki yaratmayı "çok önemli" buluyor</div>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-val">%92</span>
+      <div class="stat-lbl">iş–yaşam dengesini anlam için şart görüyor</div>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-val">%21</span>
+      <div class="stat-lbl">iş yerinde kendini tam güvende hissediyor</div>
+    </div>
+  </div>
+
+  <p class="body-text reveal">
+    Türkiye'deki çalışanlar motivasyonsuz değil. Beceriksiz değil. İşten nefret etmiyor. Ama <strong>çalışırken anlam üretemiyor.</strong> Bu fark küçük görünüyor — sonuçları büyük.
+  </p>
+
+  <div class="pullquote reveal">
+    "52/100 kötü değil — eşik üstü ama kırılgan. Çalışanlar sistemi işletiyor, ama gönülden bağlı değil."
+  </div>
+
+  <p class="body-text reveal">
+    Anlam arayışı yüksek. Kurumsal karşılık sınırlı. Bu ikisi arasındaki mesafe kapanmadıkça bağlılık, performans ve yetenek sürekliliği giderek zayıflıyor.
+  </p>
+
+  <div class="alert reveal">
+    <strong>Hedef eşik nedir?</strong> 65+ seviyesi, bir motivasyon hedefi değil — organizasyonel bir yetkinlik göstergesidir. Bu seviyeye niyet beyanıyla değil, yapısal müdahaleyle çıkılır.
+  </div>
+</div>
+
+<!-- BÖLÜM 2: BÜYÜK TEZ -->
+<div class="container">
+  <div class="sec-header reveal">
+    <div class="sec-num">Bölüm 02 — Büyük Tez</div>
+    <h2 class="sec-title">Geri Çekilmek<br><em>Ne Demek?</em></h2>
+    <p class="sec-lead">Çalışanlar işten ayrılmıyor. Ama kendilerini geri çekiyor.</p>
+  </div>
+
+  <p class="body-text reveal">
+    "Sessiz kopuş" soyut bir kavram değil. Gözlemlenebilir üç davranış kalıbından oluşuyor:
+  </p>
+
+  <div class="behavior-list reveal">
+    <div class="b-item">
+      <div class="b-n">01</div>
+      <div>
+        <span class="b-strong">Görev yapılıyor, inisiyatif alınmıyor</span>
+        <span class="b-text">İş tanımına gireni yapıyor, fazlasına girişmiyor. Minimum yeterli modu.</span>
+      </div>
+    </div>
+    <div class="b-item">
+      <div class="b-n">02</div>
+      <div>
+        <span class="b-strong">Katkı sunuluyor, sahiplenilmiyor</span>
+        <span class="b-text">İşi bitiriyor ama "kendi işi" olarak görmüyor. Katılımcıların sadece %18'i katkısının her zaman değer gördüğünü söylüyor.</span>
+      </div>
+    </div>
+    <div class="b-item">
+      <div class="b-n">03</div>
+      <div>
+        <span class="b-strong">İş sürdürülüyor, yatırım çekiliyor</span>
+        <span class="b-text">Fiziksel olarak masada, zihinsel olarak kapının dışında. Bağlılık kaybı görünür olmadan birikim yapıyor.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert reveal">
+    Bu geri çekilme <strong>ani değil, kademeli.</strong> Dolayısıyla organizasyonlar fark etmiyor — ta ki bağlılık ve performans düşene kadar.
+  </div>
+</div>
+
+<!-- BÖLÜM 3: 5 KIRILMA -->
+<div class="container">
+  <div class="sec-header reveal">
+    <div class="sec-num">Bölüm 03 — Yapısal Kırılmalar</div>
+    <h2 class="sec-title">Beş Boyutta<br><em>Ne Kırılıyor?</em></h2>
+    <p class="sec-lead">Her birini aç, oku. Her biri bağımsız değil — birlikte anlam çöküyor.</p>
+  </div>
+
+  <!-- KART 1 -->
+  <div class="break-card reveal">
+    <div class="break-card-head" onclick="toggleCard(this)">
+      <div class="break-card-num">01</div>
+      <div class="break-card-title">Değer Uyumu</div>
+      <div class="break-card-metric">Kısmi ↓</div>
+    </div>
+    <div class="break-card-body">
+      <div class="break-body-grid">
+        <div class="break-body-col">
+          <div class="break-col-head">Yapısal Anlam</div>
+          <p class="break-col-text">Değer uyumu zayıfladığında motivasyon düşmez — içsel mesafe oluşur. Çalışan görevini yapıyor ama işiyle duygusal bağ kuramıyor. Bu, anlam kaybının en erken ve en görünmez sinyali.</p>
+        </div>
+        <div class="break-body-col">
+          <div class="break-col-head">Kurum Riski</div>
+          <p class="break-col-text">Değer uyumu sağlanamayan yapılarda diğer dört boyuttaki iyileştirmelerin etkisi sınırlı kalır. Zemin çatlaksa üst katlar tutmaz.</p>
+          <span class="risk-chip">⚠ Temel kırılma noktası</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KART 2 -->
+  <div class="break-card reveal">
+    <div class="break-card-head" onclick="toggleCard(this)">
+      <div class="break-card-num">02</div>
+      <div class="break-card-title">Psikolojik Güvenlik</div>
+      <div class="break-card-metric">%21 ↓</div>
+    </div>
+    <div class="break-card-body">
+      <div class="break-body-grid">
+        <div class="break-body-col">
+          <div class="break-col-head">Yapısal Anlam</div>
+          <p class="break-col-text">Sadece %21 tam güvende. %34'ü açıkça güvende hissetmiyor. Güvensiz ortamda çalışanlar kendilerini koruma moduna geçiyor — risk almıyor, farklı düşünmüyor. Anlam burada başlamadan bitiyor.</p>
+        </div>
+        <div class="break-body-col">
+          <div class="break-col-head">Kurum Riski</div>
+          <p class="break-col-text">Güvenlik şu an bireysel lider tarzına göre değişiyor — bir ekipte var, diğerinde yok. Standartlaştırılmazsa yönetilemez.</p>
+          <span class="risk-chip">⚠ En kritik alarm</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KART 3 -->
+  <div class="break-card reveal">
+    <div class="break-card-head" onclick="toggleCard(this)">
+      <div class="break-card-num">03</div>
+      <div class="break-card-title">Gelişim ve Öğrenme</div>
+      <div class="break-card-metric">Kısıtlı ↓</div>
+    </div>
+    <div class="break-card-body">
+      <div class="break-body-grid">
+        <div class="break-body-col">
+          <div class="break-col-head">Yapısal Anlam</div>
+          <p class="break-col-text">Gelişim perspektifi olmayan iş, anlamsız olmaktan öte — "katlanılan" hale geliyor. Çalışan zihinsel olarak işi terk ediyor, fiziksel olarak değil.</p>
+        </div>
+        <div class="break-body-col">
+          <div class="break-col-head">Kurum Riski</div>
+          <p class="break-col-text">Kurumlar yeteneklerini fiziksel değil zihinsel olarak kaybediyor. Çalışan masada oturuyorken kayıp başlamış oluyor.</p>
+          <span class="risk-chip">⚠ Görünmez yetenek kaybı</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KART 4 -->
+  <div class="break-card reveal">
+    <div class="break-card-head" onclick="toggleCard(this)">
+      <div class="break-card-num">04</div>
+      <div class="break-card-title">İş–Yaşam Dengesi</div>
+      <div class="break-card-metric">%92 şart ↓</div>
+    </div>
+    <div class="break-card-body">
+      <div class="break-body-grid">
+        <div class="break-body-col">
+          <div class="break-col-head">Yapısal Anlam</div>
+          <p class="break-col-text">%92'si dengeyi anlam için temel şart görüyor. Denge bozulduğunda işin içeriği ne kadar güçlü olursa olsun anlam sürdürülemiyor.</p>
+        </div>
+        <div class="break-body-col">
+          <div class="break-col-head">Kurum Riski</div>
+          <p class="break-col-text">Denge şu an yan hak olarak yönetiliyor. Oysa bu bir iş tasarımı meselesi. Politikalar kaynakları değiştirmeden sonuç vermiyor.</p>
+          <span class="risk-chip">⚠ Sessiz kopuşun zemini</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KART 5 -->
+  <div class="break-card reveal">
+    <div class="break-card-head" onclick="toggleCard(this)">
+      <div class="break-card-num">05</div>
+      <div class="break-card-title">Liderlik Desteği</div>
+      <div class="break-card-metric">Orta ↓</div>
+    </div>
+    <div class="break-card-body">
+      <div class="break-body-grid">
+        <div class="break-body-col">
+          <div class="break-col-head">Yapısal Anlam</div>
+          <p class="break-col-text">Liderler şu an işi yönetiyor, anlam üretmiyor. Performans hedefleri konuşuluyor, "neden buradayız" konuşulmuyor.</p>
+        </div>
+        <div class="break-body-col">
+          <div class="break-col-head">Kurum Riski</div>
+          <p class="break-col-text">Liderlik desteği olmadığında diğer dört boyuttaki iyileştirmeler etkisiz kalıyor. Anlam, liderlik üzerinden günlük deneyime taşınıyor — ya da taşınmıyor.</p>
+          <span class="risk-chip">⚠ Sistem çarpanı</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BÖLÜM 4: VERİLER -->
+<div class="container">
+  <div class="sec-header reveal">
+    <div class="sec-num">Bölüm 04 — En Çarpıcı 5 Veri</div>
+    <h2 class="sec-title">Sayılar<br><em>Ne Söylüyor?</em></h2>
+  </div>
+
+  <div class="data-card reveal">
+    <div class="data-big">%21</div>
+    <div class="data-title">Psikolojik Güvenlik — En Kritik Alarm</div>
+    <p class="data-body">Sadece %21'i iş yerinde kendini tam anlamıyla güvende hissediyor. %34'ü açıkça güvende hissetmediğini söylüyor. Yaklaşık %80'i bunu güçlü yaşayamıyor. Türkiye iş ortamındaki en kritik yapısal uyarı.</p>
+    <div class="alert alert-red" style="margin-top:1rem">
+      İnsanlar güvende hissetmedikleri yerde anlam üretemez.
+    </div>
+  </div>
+
+  <div class="data-card reveal">
+    <div class="data-big">&gt;%50</div>
+    <div class="data-title">Değer–Kariyer Çatışması — Yeni Eleme Kriteri</div>
+    <p class="data-body">Çalışanların yarıdan fazlası kariyer riski olsa dahi değerleriyle çelişen işi reddedebileceğini söylüyor. Anlam artık "tercih" değil, eleme kriteri haline gelmiş.</p>
+    <div class="alert" style="margin-top:1rem">
+      Kariyer kararları artık "güvenli ilerleme" değil, "ilkesel duruş" üzerinden şekilleniyor.
+    </div>
+  </div>
+
+  <div class="data-card reveal">
+    <div class="data-big">%81 vs %66</div>
+    <div class="data-title">Beyaz Yaka / Mavi Yaka Farkı</div>
+    <p class="data-body">Beyaz yakada anlam önceliği %81, mavi yakada %66. Ama tanımlar farklı — beyaz yakada amaç ve değer uyumu, mavi yakada adalet ve emeğin karşılığı. Tek tip yaklaşım her iki grubu da kaçırıyor.</p>
+    <div class="compare-wrap">
+      <div class="compare-row">
+        <span class="compare-lbl">Beyaz Yaka</span>
+        <div class="compare-track"><div class="compare-fill" data-w="81"></div></div>
+        <span class="compare-pct">81%</span>
+      </div>
+      <div class="compare-row">
+        <span class="compare-lbl">Mavi Yaka</span>
+        <div class="compare-track"><div class="compare-fill" data-w="66"></div></div>
+        <span class="compare-pct">66%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="data-card reveal">
+    <div class="data-big">%83 vs %68</div>
+    <div class="data-title">Kadın / Erkek Farkı</div>
+    <p class="data-body">Kadınlarda %83, erkeklerde %68. Kadınlar anlamı daha bütüncül tanımlıyor: değer uyumu, katkı, psikolojik güvenlik. Erkeklerde somut çıktı ve görünür başarı ön planda.</p>
+    <div class="compare-wrap">
+      <div class="compare-row">
+        <span class="compare-lbl">Kadın</span>
+        <div class="compare-track"><div class="compare-fill" data-w="83"></div></div>
+        <span class="compare-pct">83%</span>
+      </div>
+      <div class="compare-row">
+        <span class="compare-lbl">Erkek</span>
+        <div class="compare-track"><div class="compare-fill" data-w="68"></div></div>
+        <span class="compare-pct">68%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="data-card reveal">
+    <div class="data-big">Orta</div>
+    <div class="data-title">Beklenti–Karşılık Boşluğu</div>
+    <p class="data-body">Çalışanlar beklentilerini net tanımlıyor. İşverenler bu beklentileri en çok "orta düzeyde" karşılıyor. "Tamamen karşılıyor" oranı son derece sınırlı. Bu boşluk sessiz kopuşun doğrudan beslendiği yerdir.</p>
+    <div class="alert alert-red" style="margin-top:1rem">
+      Beklentilerle deneyim arasındaki mesafe kapanmadıkça işte anlamın sürdürülebilir hale gelmesi mümkün değil.
+    </div>
+  </div>
+</div>
+
+<!-- BÖLÜM 5: MESAJLAR -->
+<div class="container">
+  <div class="sec-header reveal">
+    <div class="sec-num">Bölüm 05 — Mesajlar</div>
+    <h2 class="sec-title">Bu Rapor Kime<br><em>Ne Söylüyor?</em></h2>
+  </div>
+</div>
+
+<div style="max-width:680px; margin:0 auto 0; padding: 0 1.5rem;">
+  <div class="msg-block msg-block-dark reveal">
+    <div class="msg-label">Üst Yönetime</div>
+    <div class="msg-title">Problem motivasyon değil,<br>sistem tasarımı.</div>
+    <ul class="msg-list">
+      <li>Çalışanları daha çok motive etmeye çalışmak yanlış yanıt. Soru şu: anlam üretecek yapıları kurdunuz mu?</li>
+      <li>Psikolojik güvenlik kişisel lider tarzına bırakıldığı sürece ölçemezsiniz, yönetemezsiniz.</li>
+      <li>Takdir süreksiz kaldığı sürece çalışan katkısını daraltmaya devam eder.</li>
+      <li>İş–yaşam dengesi ayrıcalık olarak görüldüğü sürece anlam geçici kalır.</li>
+      <li>52'den 65+'a çıkış niyet beyanıyla değil, yapısal müdahaleyle mümkün.</li>
+    </ul>
+  </div>
+
+  <div class="msg-block msg-block-light reveal">
+    <div class="msg-label">Çalışanlara</div>
+    <div class="msg-title">Yalnız değilsiniz.</div>
+    <ul class="msg-list">
+      <li>Anlam arayışınız bireysel bir zayıflık değil — yapısal bir karşılıksızlığın sonucu.</li>
+      <li>Bu çoğunlukla siz işi yanlış seçtiğiniz için değil, kurumun anlam üretecek altyapıyı henüz kurmamış olmasından kaynaklanıyor.</li>
+      <li>Değerleriyle çelişen işleri reddetme eğiliminin artması, bu farkı giderek daha net gördüğünüzü gösteriyor.</li>
+      <li>Anlam arayışının yüksek olması bir güç — kariyerinizde pusula olarak kullanın.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- FİNALE -->
+<div style="max-width:680px; margin:2rem auto 0; padding: 0 1.5rem;">
+  <div class="finale reveal">
+    <div class="finale-kicker">Tek Cümlelik Özet</div>
+    <h2 class="finale-title">Anlam artık<br><em>"nasıl hissettiriyoruz?"</em><br>sorusu değil.</h2>
+    <div class="finale-rule"></div>
+    <p class="finale-quote">
+      "Türkiye'deki çalışanlar anlam arıyor; kurumlar bu arayışı bireysel motivasyona bırakıyor — ve her iki taraf da bunun bedelini ödüyor."
+    </p>
+    <div class="finale-source">HRdergiLAB · İş'te Anlam Araştırması 2026 · 9.500 Çalışan</div>
+  </div>
+</div>
+
+<div id="toast">✓ Link kopyalandı — arkadaşlarına gönder!</div>
+
+<script>
+// Scroll progress
+const rpBar = document.getElementById('rp-bar');
+window.addEventListener('scroll', () => {
+  const s = window.scrollY, t = document.body.scrollHeight - window.innerHeight;
+  rpBar.style.width = (s/t*100)+'%';
+});
+
+// Reveal on scroll
+const reveals = document.querySelectorAll('.reveal');
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('on'); ro.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(r => ro.observe(r));
+
+// Score bar animate
+setTimeout(() => { document.getElementById('sbar').style.width = '52%'; }, 600);
+
+// Compare bar animate
+const fills = document.querySelectorAll('.compare-fill');
+const bo = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.width = e.target.dataset.w + '%';
+      bo.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+fills.forEach(f => bo.observe(f));
+
+// Accordion cards
+function toggleCard(head) {
+  const body = head.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.break-card-body.open').forEach(b => b.classList.remove('open'));
+  if (!isOpen) body.classList.add('open');
+}
+
+// Share / copy
+function shareOrCopy() {
+  const url = window.location.href;
+  const title = 'İş\'te Anlam Araştırması 2026 — Bunu Okuman Lazım';
+  if (navigator.share) {
+    navigator.share({ title, url }).catch(() => copyLink(url));
+  } else {
+    copyLink(url);
+  }
+}
+
+function copyLink(url) {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(url).then(() => showToast());
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = url; document.body.appendChild(ta);
+    ta.select(); document.execCommand('copy');
+    document.body.removeChild(ta); showToast();
+  }
+}
+
+function showToast() {
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+</script>
+</body>
+</html>
