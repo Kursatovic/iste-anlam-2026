@@ -8,6 +8,10 @@ const heroEmblemImage = document.querySelector("#hero-emblem-image");
 
 const imageCandidates = {
   hero: [
+    "assets/it-uclu.png",
+    "assets/it-uclu.jpg",
+    "assets/it üçlü.png",
+    "assets/it üçlü.jpg",
     "assets/ittihat-terakki-uclu.png",
     "assets/ittihat-terakki-uclu.jpg",
     "assets/ittihat Terakki üçlü.png",
@@ -16,8 +20,8 @@ const imageCandidates = {
     "assets/ittihat-terakki-üçlü.jpg",
   ],
   emblem: [
-    "assets/it-arma.png",
     "assets/it-arma.jpg",
+    "assets/it-arma.png",
     "assets/it Arma.png",
     "assets/it Arma.jpg",
     "assets/arma.jpg",
