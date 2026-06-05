@@ -20,8 +20,8 @@ const imageCandidates = {
     "assets/ittihat-terakki-üçlü.jpg",
   ],
   emblem: [
-    "assets/it-arma.jpg",
     "assets/it-arma.png",
+    "assets/it-arma.jpg",
     "assets/it Arma.png",
     "assets/it Arma.jpg",
     "assets/arma.jpg",
