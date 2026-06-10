@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:opsz,wght,SOFT@9..144,500..800,20..80&family=Manrope:wght@400;500;700;800&family=Roboto+Mono:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=20260610-2" />
   </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -23,12 +23,12 @@
     <header class="site-nav" data-reveal>
       <a class="brand" href="#top">İTC</a>
       <nav aria-label="Ana menü">
-        <a href="#dogus">Doğuş</a>
-        <a href="#arma">Arma</a>
-        <a href="#kadro">Kadro</a>
-        <a href="#zaman">Zaman</a>
+        <a href="genel-bilgi.html">Doğuş</a>
+        <a href="genel-bilgi.html#arma">Arma</a>
+        <a href="#dosyalar">Kadro</a>
+        <a href="genel-bilgi.html#zaman">Zaman</a>
       </nav>
-      <a class="nav-action" href="#okuma">Okuma notu</a>
+      <a class="nav-action" href="genel-bilgi.html#okuma">Okuma notu</a>
     </header>
 
     <main id="top">
@@ -38,7 +38,7 @@
           <figure class="hero-main-figure">
             <img
               id="hero-main-image"
-              src="assets/ittihat-terakki-uclu.png"
+              src="assets/it-uclu.png"
               alt="Enver Paşa, Talat Paşa ve Cemal Paşa üçlü ana görseli"
             />
             <figcaption>Enver / Talat / Cemal</figcaption>
@@ -47,20 +47,12 @@
             <img id="hero-emblem-image" src="assets/it-arma.png" alt="" />
           </div>
         </div>
+        <div class="hero-corners" aria-hidden="true">
+          <p class="hero-corner-title">İttihat ve Terakki</p>
+          <p class="hero-corner-motto">İttihatçı ölür ama<br />ittihatçılık ölmez</p>
+        </div>
         <div class="hero-copy">
-          <p class="eyebrow">1889 / Askerî Tıbbiye / Selanik / Paris</p>
-          <h1 id="hero-title">
-            İttihat
-            <span>Terakki</span>
-          </h1>
-          <p class="hero-lede">
-            Bir parti olmadan önce gizli bir cemiyetti. Cemiyet olmadan önce de
-            devletin gidişatına duyulan rahatsızlığın adıydı.
-          </p>
-          <div class="hero-actions">
-            <a class="button primary" href="#dogus">Dosyayı aç</a>
-            <a class="button ghost" href="#kadro">Kişilere bak</a>
-          </div>
+          <h1 id="hero-title" class="sr-only">İttihat ve Terakki</h1>
         </div>
         <div class="hero-meta" aria-label="Ana bilgiler">
           <span>Hürriyet</span>
@@ -91,193 +83,35 @@
         </div>
       </section>
 
-      <section class="intro section-pad" id="dogus">
-        <div class="section-label" data-reveal>Dosya 01</div>
-        <div class="intro-grid">
-          <h2 data-reveal>Bir insan niye rahat memurluğunu bırakıp gizli örgüte girer?</h2>
-          <div class="intro-text" data-reveal>
-            <p>
-              Cevap tek kelime değil. İstibdat korkusu vardı. Hafiye ve jurnal
-              ağı vardı. Devletin dağılmasını izleme endişesi vardı.
-            </p>
-            <p>
-              Avrupa baskısı, Balkanlardaki ayrılıkçı hareketler, içerideki
-              idari çürüme ve ordudaki gerilik aynı yere bakıyordu: Bu düzen
-              böyle gitmez.
-            </p>
-          </div>
+      <section class="hub-board section-pad" id="dosyalar">
+        <div class="hub-head" data-reveal>
+          <p class="eyebrow">Dosya se&#231;</p>
+          <h2>Tek sayfaya y&#305;&#287;mak yok. Her ba&#351;l&#305;k kendi dosyas&#305;nda.</h2>
+          <p>&#304;ttihat ve Terakki genel &#231;er&#231;evesi ayr&#305;, kadro dosyalar&#305; ayr&#305;. B&#246;ylece hem referans sitedeki premium kapak hissi korunur hem de i&#231;erik s&#305;k&#305;&#351;madan okunur.</p>
         </div>
-      </section>
-
-      <section class="split-panel section-pad">
-        <article class="glass-card" data-tilt data-reveal>
-          <span class="card-kicker">Paris</span>
-          <h3>Yayın, sürgün ve fikir tartışması</h3>
-          <p>
-            Paris hattında gazete, risale, Avrupa kamuoyu ve muhalefet dili
-            öndeydi. Hareket kendisini önce kelimelerle kurdu.
-          </p>
-        </article>
-        <article class="glass-card dark" data-tilt data-reveal>
-          <span class="card-kicker">Selanik</span>
-          <h3>Subaylar, şubeler ve ihtilal ihtimali</h3>
-          <p>
-            Selanik hattında Makedonya gerilimi, gizli hücreler ve silahlı
-            hareket ihtimali vardı. 1908'e giden yol bu iki damarın birleşmesiyle
-            açıldı.
-          </p>
-        </article>
-      </section>
-
-      <section class="archive section-pad" id="arma">
-        <div class="archive-copy" data-reveal>
-          <p class="eyebrow">Dosya 02 / Arma</p>
-          <h2>Tek karede bütün gerilim.</h2>
-          <p>
-            En tepede tuğra değil, Kanun-i Esasi fikri vardır. Yanlarda kalem ve
-            silah durur. Terazinin bir kefesinde Kur'an-ı Kerim, diğer kefesinde
-            hançer yer alır.
-          </p>
-          <p>
-            Arma bu yüzden süs değil. İttihatçılığın kendisini nasıl anlatmak
-            istediğini gösteren görsel bir metindir: anayasa, hürriyet, silah,
-            adalet, din, imparatorluk ve kardeşlik aynı yüzeyde durur.
-          </p>
-        </div>
-        <figure class="emblem-frame" data-tilt data-reveal>
-          <img src="assets/arma.jpg" alt="İttihat ve Terakki arması" />
-          <figcaption>Wikimedia Commons, CC0</figcaption>
-        </figure>
-      </section>
-
-      <section class="oath">
-        <div class="oath-inner" data-reveal>
-          <span>Yemin / gizlilik / bağlılık</span>
-          <p>
-            Kırmızı önlük, siyah peçe, Kur'an-ı Kerim, hançer, tabanca, gözleri
-            bağlı yeni üye... Film sahnesi gibi duruyor. Fakat sürgün, hapis ve
-            takip gerçekse dramatik olan yemin değil, dönemin kendisidir.
-          </p>
-        </div>
-      </section>
-
-      <section class="people section-pad" id="kadro">
-        <div class="people-head" data-reveal>
-          <p class="eyebrow">Dosya 03 / Kadro</p>
-          <h2>Hareketi tek kişinin hikâyesine sıkıştırmak kolay. Eksik olan da bu.</h2>
-        </div>
-        <div class="person-grid">
-          <article class="person-card" data-person="enver" data-reveal>
-            <img src="assets/enver.png" alt="Enver Paşa için hazırlanmış dosya görseli" />
-            <div>
-              <span>01</span>
-              <h3>Enver Paşa</h3>
-              <p>Hürriyet kahramanlığı, Babıali, savaş ve kırılma çizgisi.</p>
-            </div>
-          </article>
-          <article class="person-card" data-person="talat" data-reveal>
-            <img src="assets/talat.png" alt="Talat Paşa için hazırlanmış dosya görseli" />
-            <div>
-              <span>02</span>
-              <h3>Talat Paşa</h3>
-              <p>Posta ağı, örgüt aklı ve iktidarın merkezindeki siyaset.</p>
-            </div>
-          </article>
-          <article class="person-card" data-person="cemal" data-reveal>
-            <img src="assets/cemal.png" alt="Cemal Paşa için hazırlanmış dosya görseli" />
-            <div>
-              <span>03</span>
-              <h3>Cemal Paşa</h3>
-              <p>İstanbul muhafızlığı, Suriye hattı ve iki ayrı hayat.</p>
-            </div>
-          </article>
-          <article class="person-card" data-person="nazim" data-reveal>
-            <img src="assets/nazim.png" alt="Dr. Nazım için hazırlanmış dosya görseli" />
-            <div>
-              <span>04</span>
-              <h3>Dr. Nâzım</h3>
-              <p>Modernleşme fikri, firar, birleşme ve kadro aklı.</p>
-            </div>
-          </article>
-          <article class="person-card" data-person="baha" data-reveal>
-            <img src="assets/baha.png" alt="Dr. Bahaeddin Şakir için hazırlanmış dosya görseli" />
-            <div>
-              <span>05</span>
-              <h3>Bahaeddin Şakir</h3>
-              <p>Kalem, mahkeme, teşkilat ve sertleşen siyaset dili.</p>
-            </div>
-          </article>
-          <article class="person-card" data-person="mustafa" data-reveal>
-            <img src="assets/mustafa.png" alt="Mustafa Kemal için hazırlanmış dosya görseli" />
-            <div>
-              <span>06</span>
-              <h3>Mustafa Kemal</h3>
-              <p>Ordu-siyaset gerilimi, kongre, Sofya ve devlet aklı.</p>
-            </div>
-          </article>
-          <article class="person-card" data-person="omer" data-reveal>
-            <img src="assets/omer.png" alt="Ömer Naci için hazırlanmış dosya görseli" />
-            <div>
-              <span>07</span>
-              <h3>Ömer Naci</h3>
-              <p>Hitabet, meydan, fedailik ve ihtilalin sesi.</p>
-            </div>
-          </article>
-          <article class="person-card" data-person="ahmed" data-reveal>
-            <img src="assets/ahmed-riza.png" alt="Ahmed Rıza için hazırlanmış dosya görseli" />
-            <div>
-              <span>08</span>
-              <h3>Ahmed Rıza</h3>
-              <p>Paris hattı, Meşveret çevresi ve fikrî muhalefet dili.</p>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="timeline section-pad" id="zaman">
-        <div class="section-label" data-reveal>Zaman çizgisi</div>
-        <div class="timeline-row" data-reveal>
-          <span>1889</span>
-          <p>Askerî Tıbbiye'de İttihâd-ı Osmânî adıyla ilk yapı kurulur.</p>
-        </div>
-        <div class="timeline-row" data-reveal>
-          <span>1895</span>
-          <p>Paris hattında İttihat ve Terakki Cemiyeti adı öne çıkar.</p>
-        </div>
-        <div class="timeline-row" data-reveal>
-          <span>1907</span>
-          <p>Paris ve Selanik damarları birleşir; örgüt daha etkili bir hatta girer.</p>
-        </div>
-        <div class="timeline-row" data-reveal>
-          <span>1908</span>
-          <p>Meşrutiyet yeniden ilan edilir. Gizli cemiyet artık Osmanlı siyasetinin merkezindedir.</p>
-        </div>
-        <div class="timeline-row" data-reveal>
-          <span>1913</span>
-          <p>Babıali Baskını sonrasında iktidar pratiği sertleşir; cemiyet-devlet ilişkisi değişir.</p>
-        </div>
-      </section>
-
-      <section class="read-note section-pad" id="okuma">
-        <div class="note-card" data-reveal>
-          <p class="eyebrow">Okuma notu</p>
-          <h2>Bu site bir hüküm dağıtma yeri değil, soru kurma alanı.</h2>
-          <p>
-            İttihat ve Terakki'yi yalnızca kahramanlık ya da felaket kalıbına
-            sıkıştırınca konu fakirleşiyor. Daha iyi soru şu: Dağılmakta olan
-            bir imparatorlukta hürriyet isteyen kadro, iktidara yaklaşınca hangi
-            bedelleri üretir?
-          </p>
-          <a class="button primary" href="#top">Başa dön</a>
+        <div class="hub-grid">
+          <a class="hub-card hub-card-wide" href="genel-bilgi.html" data-reveal>
+            <span>00 / Genel</span>
+            <h3>İTC genel bilgi</h3>
+            <p>Do&#287;u&#351;, Paris-Selanik damarlar&#305;, yemin, arma, iktidar ve zaman &#231;izgisi.</p>
+          </a>
+          <a class="hub-card" href="kisiler/enver.html" data-reveal><img src="assets/enver.png" alt=""><span>01</span><h3>Enver Paşa</h3></a>
+          <a class="hub-card" href="kisiler/talat.html" data-reveal><img src="assets/talat.png" alt=""><span>02</span><h3>Talat Paşa</h3></a>
+          <a class="hub-card" href="kisiler/cemal.html" data-reveal><img src="assets/cemal.png" alt=""><span>03</span><h3>Cemal Paşa</h3></a>
+          <a class="hub-card" href="kisiler/nazim.html" data-reveal><img src="assets/nazim.png" alt=""><span>04</span><h3>Dr. Nâzım</h3></a>
+          <a class="hub-card" href="kisiler/baha.html" data-reveal><img src="assets/baha.png" alt=""><span>05</span><h3>Bahaeddin Şakir</h3></a>
+          <a class="hub-card" href="kisiler/mustafa.html" data-reveal><img src="assets/mustafa.png" alt=""><span>06</span><h3>Mustafa Kemal</h3></a>
+          <a class="hub-card" href="kisiler/omer.html" data-reveal><img src="assets/omer.png" alt=""><span>07</span><h3>Ömer Naci</h3></a>
+          <a class="hub-card" href="kisiler/ahmed-riza.html" data-reveal><img src="assets/ahmed-riza.png" alt=""><span>08</span><h3>Ahmed Rıza</h3></a>
         </div>
       </section>
     </main>
 
     <footer class="footer">
-      <p>İttihatçılık sitesi taslak arayüzü</p>
-      <p>Kaynak omurga: Süleyman Tekir'in İttihatçılık: Doğuş ve İttihatçılık: İktidar çalışmaları üzerine hazırlanan site metinleri.</p>
+      <p>?ttihat??l?k sitesi taslak aray?z?</p>
+      <p>Kaynak omurga: haz?rlanan ?ttihat??l?k yay?n dosyalar? ve ki?i biyografileri.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=20260605-4"></script>
   </body>
 </html>

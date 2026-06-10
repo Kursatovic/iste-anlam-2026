@@ -8,6 +8,10 @@ const heroEmblemImage = document.querySelector("#hero-emblem-image");
 
 const imageCandidates = {
   hero: [
+    "assets/it-uclu.png",
+    "assets/it-uclu.jpg",
+    "assets/it üçlü.png",
+    "assets/it üçlü.jpg",
     "assets/ittihat-terakki-uclu.png",
     "assets/ittihat-terakki-uclu.jpg",
     "assets/ittihat Terakki üçlü.png",
@@ -135,11 +139,19 @@ function revealOnScroll() {
 
 function wireTiltCards() {
   document.querySelectorAll("[data-tilt]").forEach((card) => {
+    const lean = card.classList.contains("glass-card-left") ? -2.2 : card.classList.contains("glass-card-right") ? 2.2 : 0;
+
+    card.addEventListener("pointerenter", () => {
+      if (lean) {
+        card.style.transform = `perspective(900px) rotateZ(${lean}deg) translateY(-6px)`;
+      }
+    });
+
     card.addEventListener("pointermove", (event) => {
       const rect = card.getBoundingClientRect();
       const x = (event.clientX - rect.left) / rect.width - 0.5;
       const y = (event.clientY - rect.top) / rect.height - 0.5;
-      card.style.transform = `perspective(900px) rotateX(${y * -5}deg) rotateY(${x * 6}deg) translateY(-4px)`;
+      card.style.transform = `perspective(900px) rotateX(${y * -5}deg) rotateY(${x * 6}deg) rotateZ(${lean + x * 1.1}deg) translateY(-6px)`;
     });
 
     card.addEventListener("pointerleave", () => {
